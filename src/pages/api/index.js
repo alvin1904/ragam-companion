@@ -14,9 +14,9 @@ export const setHead = (token) => {
   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
-export const loginUserApi = (data) => api.post("/user/auth/login", data);
-export const registerUserApi = (data) => api.post("/user/auth/register", data);
-export const logoutUserApi = () => api.get("/user/auth/logout");
-export const getDetails = () => api.get("/user");
-export const updateUserName = (data) => api.patch("/user/auth/edit", data);
-export const updatePassword = (data) => api.patch("/user/auth/edit/password", data);
+export const loginAdminApi = (data) => api.post("admin/auth/login", data);
+export const registerAdminApi = (data) => api.post("/admin/auth/register", data);
+export const logoutAdminApi = () => api.get("/admin/auth/logout");
+export const getDetails = () => api.get("/admin");
+export const updateUserName = (data) => api.patch("/admin/auth/edit", data);
+export const updatePassword = (data) => api.patch("/admin/auth/edit/password", data);

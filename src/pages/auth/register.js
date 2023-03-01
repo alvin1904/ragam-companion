@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { RegisterAdmin } from "../api/auth";
 
 export default function Register() {
   const router = useRouter();
@@ -12,7 +13,6 @@ export default function Register() {
   const [err, setErr] = useState("");
 
   const handleRegister = async () => {
-    let flag = false;
     if (details.password == "" || details.email == "" || details.name == "")
       return setErr("Enter credentials and try again");
     else if (details.password.length < 6)
@@ -21,6 +21,10 @@ export default function Register() {
       return setErr("The passwords do not match");
     }
     setErr("");
+    let res = await RegisterAdmin(details);
+    if (res.status && (res.status == 200 || res.status == 201))
+      router.push("/auth/login");
+    else setErr(res.response.data.error || res.message);
   };
 
   return (
