@@ -1,7 +1,11 @@
-import React from 'react'
+import Albums from "./Albums";
+import Sidebar from "./Sidebar";
 
 export default function Dashboard() {
   return (
-    <div>Dashboard</div>
-  )
+    <div className="Dashboard">
+      <Sidebar />
+      <Albums />
+    </div>
+  );
 }

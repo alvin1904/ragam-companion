@@ -101,6 +101,7 @@ textarea {
   --color-ui-shade: #5d6681;
 
   font-family: "Raleway", sans-serif;
+  user-select: none;
 }
 * {
   font-family: "Raleway", sans-serif;
@@ -114,7 +115,9 @@ body {
 }
 .linear_gradient,
 body {
-  background: linear-gradient(90deg, #6570ff, #750fbd, #c949f8);
+  /* background: linear-gradient(90deg, #6570ff, #750fbd, #c949f8); */
+  background-image: url("/bg.svg");
+  background-size: cover;
 }
 
 .hover_effect_1,
@@ -207,4 +210,102 @@ body {
 .message {
   opacity: 1;
   display: block;
+}
+
+.Dashboard {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  overflow-y: scroll;
+}
+.Sidebar {
+  height: 100vh;
+  width: 23%;
+  background-color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  position: fixed;
+}
+.Albums {
+  width: 77%;
+  top: 0%;
+  right: 0%;
+  position: absolute;
+  padding: 2% 3%;
+  padding-bottom: 4%;
+}
+.Albums_headline {
+  font-size: clamp(2.45rem, 4vw, 2.5rem);
+  font-weight: 200;
+  color: white;
+}
+.Album_card {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(5.5px);
+  border-radius: 10px;
+  border: 0.25px solid rgba(255, 255, 255, 0.08);
+  transition: 250ms all ease-in-out;
+  cursor: pointer;
+  height: 230px;
+  margin: 0;
+  margin-top: 2rem;
+  background-image: url("/public/bg.svg");
+  overflow: hidden;
+
+}
+.Album_card:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.Album_bg{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  filter: blur(1.5px);
+  transition: 250ms all ease-in-out;
+  position: absolute;
+}
+.Album_bg:hover{
+  filter: blur(0.5px);
+  scale: 1.01;
+}
+.Album_details{
+  position: absolute;
+  color: white;
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+}
+.Album_details h1{
+  font-size: 3rem;
+  font-weight: 600;
+}
+.Album_details p{
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: -10px;
+}
+
+@media (max-width: 480px) {
+  .Sidebar {
+    width: 15%;
+  }
+  .Albums {
+    padding: 6% 8%;
+    width: 85%;
+    
+  }
+  .Album_card {
+    width: 270px;
+  }
+  .Album_bg{
+    height: 100%;
+  }
+  .Album_details p{
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-top: -15px;
+  }
+
 }

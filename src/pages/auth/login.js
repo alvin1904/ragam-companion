@@ -12,21 +12,21 @@ export default function Login() {
     password: "",
   });
 
-  // useEffect(() => {
-  //   let temp = localStorage.getItem("details");
-  //   if (temp) {
-  //     let token = JSON.parse(temp).token;
-  //     setHead(token);
-  //     getDetails()
-  //       .then((res) => {
-  //         if (res.status == 200 && res.data) navigate("/");
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  //   //CHECKING IF THERE IS A TOKEN IN STORAGE
-  // }, []);
+  useEffect(() => {
+    let temp = localStorage.getItem("details");
+    if (temp) {
+      let token = JSON.parse(temp).token;
+      setHead(token);
+      getDetails()
+        .then((res) => {
+          if (res.status == 200 && res.data) navigate("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    //CHECKING IF THERE IS A TOKEN IN STORAGE
+  }, []);
 
   const handleLogin = async () => {
     if (details.email == 0 || details.password == "")
@@ -37,8 +37,8 @@ export default function Login() {
       setErr("");
       let res = await LoginAdmin(details);
       if (res.status && (res.status == 200 || res.status == 201))
-        router.push("/dashboard");
-      else setErr(res.response.data.error || res.message);
+        router.push("/");
+      else setErr((res.response && res.response.data.error) || res.message);
     }
   };
   return (
