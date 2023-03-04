@@ -218,14 +218,7 @@ body {
   position: absolute;
   overflow-y: scroll;
 }
-.Sidebar {
-  height: 100vh;
-  width: 23%;
-  background-color: white;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
-  position: fixed;
-}
+
 .Albums {
   width: 77%;
   top: 0%;
@@ -241,71 +234,172 @@ body {
 }
 .Album_card {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(5.5px);
-  -webkit-backdrop-filter: blur(5.5px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
   border: 0.25px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 0;
+  border-left: 0;
   transition: 250ms all ease-in-out;
   cursor: pointer;
   height: 230px;
   margin: 0;
   margin-top: 2rem;
-  background-image: url("/public/bg.svg");
+  background-color: transparent;
   overflow: hidden;
-
 }
 .Album_card:hover {
   background: rgba(255, 255, 255, 0.5);
 }
 
-.Album_bg{
+.Album_bg {
   width: 100%;
   height: auto;
   object-fit: cover;
-  filter: blur(1.5px);
+  filter: blur(1px);
   transition: 250ms all ease-in-out;
   position: absolute;
 }
-.Album_bg:hover{
-  filter: blur(0.5px);
-  scale: 1.01;
+.Album_bg:hover {
+  filter: blur(0px);
+  scale: 1.02;
 }
-.Album_details{
+.Album_details {
   position: absolute;
   color: white;
   position: absolute;
-  bottom: 5px;
-  left: 10px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, black, transparent);
 }
-.Album_details h1{
-  font-size: 3rem;
-  font-weight: 600;
-}
-.Album_details p{
-  font-size: 1.5rem;
+.Album_details h1 {
+  font-size: 2rem;
   font-weight: 400;
-  margin-top: -10px;
+  line-height: 2rem;
+  padding-bottom: 1.5rem;
+}
+.Album_details p {
+  font-size: 1.15rem;
+  font-weight: 300;
+  margin-top: -20px;
 }
 
 @media (max-width: 480px) {
-  .Sidebar {
-    width: 15%;
-  }
   .Albums {
     padding: 6% 8%;
     width: 85%;
-    
   }
   .Album_card {
     width: 270px;
   }
-  .Album_bg{
+  .Album_bg {
     height: 100%;
   }
-  .Album_details p{
+  .Album_details p {
     font-size: 1.15rem;
     font-weight: 500;
     margin-top: -15px;
   }
+  .Album_bg {
+    filter: blur(0px);
+  }
+}
 
+.Sidebar {
+  height: 100vh;
+  width: 23%;
+  background-color: var(--color-ui-800);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  position: fixed;
+}
+
+.Sidebar,
+.Sidebar_list {
+  display: grid;
+  grid-auto-flow: row;
+  align-items: center;
+  justify-content: center;
+}
+.Sidebar_signout {
+  justify-self: left;
+}
+.Sidebar_details,
+.Sidebar img {
+  display: grid;
+  justify-items: center;
+  justify-self: center;
+  gap: 0.5rem
+}
+.Sidebar_name, .Sidebar_email{
+  color: white;
+}
+.Sidebar_name{
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1rem;
+  margin-top: 0.5rem;
+}
+.Sidebar_email{
+  font-size: 0.8rem;
+}
+.Sidebar_list {
+  gap: 1rem;
+}
+.Sidebar_button {
+  all: unset;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 2rem;
+  color: var(--color-ui-shade);
+  cursor: pointer;
+  transition: 250ms all ease-in-out;
+}
+.Sidebar_button:focus,
+.Sidebar_button:hover,
+.btn_focus {
+  color: white;
+}
+.Sidebar_options .Sidebar_button {
+  grid-template-columns: auto 1fr;
+  text-align: left;
+  align-items: center;
+}
+.Sidebar_button span {
+  font-size: 1.15rem;
+  font-weight: 500;
+  justify-self: left;
+}
+.Sidebar_dp_hodler {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.Sidebar_dp_hodler img{
+  object-fit: cover;
+}
+
+/* SIDEBAR */
+@media (max-width: 480px) {
+  .Sidebar {
+    width: 15%;
+    justify-items: center;
+  }
+  .Sidebar_details,
+  .Sidebar_button span {
+    display: none;
+  }
+  .Sidebar_button {
+    display: flex;
+  }
+  .Sidebar_list {
+    gap: 2.25rem;
+  }
+  .Sidebar_signout {
+    justify-self: center;
+  }
 }

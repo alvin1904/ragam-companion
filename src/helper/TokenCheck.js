@@ -9,6 +9,9 @@ const TokenCheck = (props) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        // Wrap the following code inside a conditional block
+        // to ensure that it only runs on the client-side
+        if (typeof window === "undefined") return;
         if (typeof window !== "undefined") {
           let temp = localStorage.getItem("details");
           if (!temp) return router.push("/auth/login");
@@ -24,10 +27,10 @@ const TokenCheck = (props) => {
   }, []);
 
   if (!authenticated) {
-    return props.fallback;
+    return <>{props.fallback()}</>;
   }
 
-  return props.children;
+  return <>{props.children}</>;
 };
 
 export default TokenCheck;
