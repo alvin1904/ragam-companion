@@ -332,18 +332,19 @@ body {
   display: grid;
   justify-items: center;
   justify-self: center;
-  gap: 0.5rem
+  gap: 0.5rem;
 }
-.Sidebar_name, .Sidebar_email{
+.Sidebar_name,
+.Sidebar_email {
   color: white;
 }
-.Sidebar_name{
+.Sidebar_name {
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1rem;
   margin-top: 0.5rem;
 }
-.Sidebar_email{
+.Sidebar_email {
   font-size: 0.8rem;
 }
 .Sidebar_list {
@@ -379,7 +380,7 @@ body {
   border-radius: 50%;
   overflow: hidden;
 }
-.Sidebar_dp_hodler img{
+.Sidebar_dp_hodler img {
   object-fit: cover;
 }
 
@@ -401,5 +402,91 @@ body {
   }
   .Sidebar_signout {
     justify-self: center;
+  }
+}
+
+/* CREATE ALBUMS */
+.album_section {
+  position: absolute;
+  transform: translate(5.5%, 5%);
+  width: 90vw;
+  height: 90vh;
+  background-color: var(--color-ui-800);
+  border-radius: 10px;
+  padding: 2rem;
+}
+.album_headline {
+  all: unset;
+  color: var(--color-ui-shade);
+  font-size: 3rem;
+  transition: 100ms all ease-in-out;
+}
+.album_headline:focus {
+  border: none;
+  box-shadow: inset 0 -2px 0 var(--color-ui-shade);
+  border-radius: 2px;
+}
+.album_upload,
+.album_submit {
+  all: unset;
+  height: auto;
+  width: auto;
+  background-color: var(--color-ui-shade);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 1rem;
+  cursor: pointer;
+  margin-right: 2rem;
+  transition: 250ms all ease-in-out;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+.album_upload:hover,
+.album_submit:hover {
+  background-color: var(--color-primary-400);
+}
+.album_submit {
+  width: 9rem;
+  text-align: center;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+.album_dp_display {
+  width: 70vw;
+  height: 50vh;
+  overflow: hidden;
+  margin-top: 4rem;
+  margin-left: 7rem;
+}
+.album_dp_display img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 480px) {
+  .album_section {
+    /* display: grid; */
+    text-align: center;
+    justify-items: center;
+  }
+  .album_headline {
+    color: var(--color-ui-shade);
+    font-size: 1.5rem;
+    width: auto;
+  }
+  .album_upload {
+    width: 13rem;
+  }
+  .album_dp_display {
+    all: unset;
+    width: 20vw;
+    height: 10vh;
+  }
+  .album_dp_display img {
+    margin-top: 2rem;
+    object-fit: cover;
+    height: 20%;
   }
 }

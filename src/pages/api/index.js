@@ -14,9 +14,13 @@ export const setHead = (token) => {
   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
-export const loginAdminApi = (data) => api.post("admin/auth/login", data);
-export const registerAdminApi = (data) => api.post("/admin/auth/register", data);
-export const logoutAdminApi = () => api.get("/admin/auth/logout");
-export const getDetails = () => api.get("/admin");
-export const updateUserName = (data) => api.patch("/admin/auth/edit", data);
-export const updatePassword = (data) => api.patch("/admin/auth/edit/password", data);
+export const loginAdminApi = (data) => api.post("artist/auth/login", data);
+export const registerAdminApi = (data) => api.post("/artist/auth/register", data);
+export const logoutAdminApi = () => api.get("/artist/auth/logout");
+export const getDetails = () => api.get("/artist");
+export const updateUserName = (data) => api.patch("/artist/auth/edit", data);
+export const updatePassword = (data) => api.patch("/artist/auth/edit/password", data);
+
+// export const createAlbumApi = (data) => api.post("/albums", data);
+export const getAlbumApi = (data) => api.post("/album", data);
+export const getAlbumsApi = (data) => api.post("/albums", data);
