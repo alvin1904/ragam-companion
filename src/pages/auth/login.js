@@ -39,6 +39,7 @@ export default function Login() {
     else {
       setErr("");
       let res = await LoginAdmin(details);
+      console.log(res)
       if (res.status && (res.status == 200 || res.status == 201))
         router.push("/");
       else setErr((res.response && res.response.data.error) || res.message);

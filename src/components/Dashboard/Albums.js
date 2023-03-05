@@ -9,7 +9,10 @@ export default function Albums() {
     const fetchData = async () => {
       const res = await getAlbums();
       console.log(res);
-      if (res) setList(res);
+      console.log(typeof res)
+      // if (typeof res=="Array") console.log("Arrya")
+      if (res.message) console.log("Error handle")
+      else setList(res);
     };
     const albumList = getAlbumsfrLS();
     if (albumList === list && list.length > 0) console.log(list);

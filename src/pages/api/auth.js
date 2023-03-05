@@ -1,4 +1,11 @@
-import { getDetails, loginAdminApi, logoutAdminApi, registerAdminApi, setHead } from ".";
+import {
+  getDetails,
+  loginAdminApi,
+  logoutAdminApi,
+  registerAdminApi,
+  setHead,
+} from ".";
+
 
 export const LoginAdmin = async (data) => {
   console.log(data);
@@ -44,7 +51,6 @@ export const handleLogOut = async () => {
     if (res.status == 200) {
       localStorage.removeItem("details");
       localStorage.clear();
-      console.log({ msg: res.data.message });
       return { msg: res.data.message };
     }
   } catch (err) {

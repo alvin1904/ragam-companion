@@ -28,6 +28,7 @@ export default function Register() {
     }
     setErr("");
     let res = await RegisterAdmin(details);
+    console.log(res)
     if (res.status && (res.status == 200 || res.status == 201))
       router.push("/auth/login");
     else setErr((res.response && res.response.data.error) || res.message);

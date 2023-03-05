@@ -5,6 +5,7 @@ import { getFromLocalStorage } from "@/helper/LocalStorage";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { handleLogOut } from "@/pages/api/auth";
+import img from "@/../public/photos/defaultPic.png";
 
 export default function Sidebar() {
   const router = useRouter();
@@ -28,7 +29,7 @@ export default function Sidebar() {
       <div className="Sidebar_details">
         <div className="Sidebar_dp_hodler">
           <Image
-            src={details.profilePic || "/photos/defaultPic.jpg"}
+            src={details.profilePic || img}
             width={90}
             height={90}
             alt="profile-pic"
@@ -76,8 +77,8 @@ export default function Sidebar() {
         <button
           className="Sidebar_button"
           onClick={() => {
-            handleLogOut();
-            router.push("/auth/login");
+            const res = handleLogOut();
+            if (!res.err) router.push("/auth/login");
           }}
         >
           <IoIosExit size={27} />
