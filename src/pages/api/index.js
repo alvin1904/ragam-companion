@@ -1,17 +1,25 @@
 import axios from "axios";
 
+const baseurl = "http://localhost:5000/api/v1";
+
 const api = axios.create({
-  baseURL: "http://localhost:5000/api/v1",
-  // baseURL: "http://192.168.0.123:3000/",
-  //   baseURL: "https://myTodo1904Personal-api.onrender.com/",
+  baseURL: baseurl,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
   },
 });
 
+const api2 = axios.create({
+  baseURL: baseurl,
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
+});
+
 export const setHead = (token) => {
   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  api2.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
 export const loginAdminApi = (data) => api.post("artist/auth/login", data);
@@ -21,6 +29,6 @@ export const getDetails = () => api.get("/artist");
 export const updateUserName = (data) => api.patch("/artist/auth/edit", data);
 export const updatePassword = (data) => api.patch("/artist/auth/edit/password", data);
 
-// export const createAlbumApi = (data) => api.post("/albums", data);
-export const getAlbumApi = (data) => api.post("/album", data);
-export const getAlbumsApi = (data) => api.post("/albums", data);
+export const createAlbumApi = (data) => api2.post("/albums", data);
+export const getAlbumApi = () => api.get("/album");
+export const getAlbumsApi = () => api.get("/albums");

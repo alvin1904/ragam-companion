@@ -1,4 +1,4 @@
-import { getDetails, loginAdminApi, registerAdminApi, setHead } from ".";
+import { getDetails, loginAdminApi, logoutAdminApi, registerAdminApi, setHead } from ".";
 
 export const LoginAdmin = async (data) => {
   console.log(data);
@@ -34,5 +34,21 @@ export const RegisterAdmin = async (data) => {
     return res;
   } catch (err) {
     return err;
+  }
+};
+
+export const handleLogOut = async () => {
+  try {
+    const res = await logoutAdminApi();
+    setHead("");
+    if (res.status == 200) {
+      localStorage.removeItem("details");
+      localStorage.clear();
+      console.log({ msg: res.data.message });
+      return { msg: res.data.message };
+    }
+  } catch (err) {
+    console.log(err);
+    return { err: "signout error" };
   }
 };
