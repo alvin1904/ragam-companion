@@ -12,8 +12,8 @@ export default function Sidebar() {
 
   const [details, setDetails] = useState({});
   useEffect(() => {
-    const dataLoader = async () => {
-      const data = await getFromLocalStorage();
+    const dataLoader = () => {
+      const data = getFromLocalStorage("details");
       setDetails({
         email: data.email,
         name: data.name,
@@ -76,8 +76,8 @@ export default function Sidebar() {
       <div className="Sidebar_signout">
         <button
           className="Sidebar_button"
-          onClick={() => {
-            const res = handleLogOut();
+          onClick={async () => {
+            const res = await handleLogOut();
             if (!res.err) router.push("/auth/login");
           }}
         >

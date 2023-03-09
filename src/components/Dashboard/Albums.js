@@ -1,4 +1,5 @@
-import { getAlbums, getAlbumsfrLS } from "@/pages/api/album";
+import { getFromLocalStorage } from "@/helper/LocalStorage";
+import { getAlbums } from "@/pages/api/album";
 import { useEffect, useState } from "react";
 import AlbumItem from "./AlbumItem";
 
@@ -8,13 +9,10 @@ export default function Albums() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getAlbums();
-      console.log(res);
-      console.log(typeof res)
-      // if (typeof res=="Array") console.log("Arrya")
       if (res.message) console.log("Error handle")
       else setList(res);
     };
-    const albumList = getAlbumsfrLS();
+    const albumList = getFromLocalStorage("albums");
     if (albumList === list && list.length > 0) console.log(list);
     else if (albumList && albumList.length > 0) setList(albumList);
     else if (list.length == 0) fetchData();

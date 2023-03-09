@@ -13,7 +13,6 @@ export const createAlbum = async (data) => {
 
 const addAlbumsToLS = (data) =>
   localStorage.setItem("albums", JSON.stringify(data));
-export const getAlbumsfrLS = () => JSON.parse(localStorage.getItem("albums"));
 
 export const getAlbums = async () => {
   try {
