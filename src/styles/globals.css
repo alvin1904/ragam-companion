@@ -447,7 +447,7 @@ body {
   background-color: var(--color-primary-400);
 }
 .album_submit {
-  width: 9rem;
+  width: 12rem;
   text-align: center;
   font-size: 1.15rem;
   text-transform: uppercase;

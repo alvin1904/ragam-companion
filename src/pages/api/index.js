@@ -23,12 +23,18 @@ export const setHead = (token) => {
 };
 
 export const loginAdminApi = (data) => api.post("artist/auth/login", data);
-export const registerAdminApi = (data) => api.post("/artist/auth/register", data);
+export const registerAdminApi = (data) =>
+  api.post("/artist/auth/register", data);
 export const logoutAdminApi = () => api.get("/artist/auth/logout");
 export const getDetails = () => api.get("/artist");
 export const updateUserName = (data) => api.patch("/artist/auth/edit", data);
-export const updatePassword = (data) => api.patch("/artist/auth/edit/password", data);
+export const updatePassword = (data) =>
+  api.patch("/artist/auth/edit/password", data);
 
-export const createAlbumApi = (data) => api2.post("/albums", data);
+export const createAlbumApi = (formdata) => api2.post("/albums", formdata);
 export const getAlbumApi = () => api.get("/album");
 export const getAlbumsApi = () => api.get("/albums");
+
+export const uploadSongDetails = (formdata) => api2.post("/songs", formdata);
+export const uploadSongImage = (formdata, songId) =>
+  api2.patch(`/songs/${songId}`, formdata);
