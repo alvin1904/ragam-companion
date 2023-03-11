@@ -51,10 +51,10 @@ export const handleLogOut = async () => {
     if (res.status == 200) {
       localStorage.removeItem("details");
       localStorage.clear();
-      return { msg: res.data.message };
+      return res;
     }
   } catch (err) {
     console.log(err);
-    return { err: "signout error" };
+    return err;
   }
 };

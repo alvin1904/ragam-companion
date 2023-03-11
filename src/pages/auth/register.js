@@ -1,12 +1,27 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import { RegisterAdmin } from "../api/auth";
 import Head from "next/head";
+import ErrorHandler from "@/components/ErrorHandler/ErrorHandler";
+import { themes, types } from "@/components/ErrorHandler/config";
 
 export default function Register() {
-  const router = useRouter();
+  //ERROR HANDLER START
+  const [show, setShow] = useState(false);
+  const [messageProps, setMessageProps] = useState({});
+  const showMessage = (text, theme, type) => {
+    setMessageProps({ message: text, themes: theme, types: type });
+    setShow(true);
+  };
+  useEffect(() => {
+    if (show) {
+      const timeout = setTimeout(() => setShow(false), 3000);
+      return () => clearTimeout(timeout);
+    }
+  }, [show]);
+  //ERROR HANDLER END
 
-  const [err, setErr] = useState("");
+  const router = useRouter();
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -20,18 +35,29 @@ export default function Register() {
       password1: password1Ref.current.value,
     };
     if (details.password == "" || details.email == "" || details.name == "")
-      return setErr("Enter credentials and try again");
+      return showMessage(
+        "Enter credentials and try again",
+        themes.light,
+        types.warning
+      );
     else if (details.password.length < 6)
-      return setErr("Password should be min 6 chars long");
+      return showMessage(
+        "Passwords should be min 6 chars long",
+        themes.light,
+        types.warning
+      );
     else if (details.password !== details.password1) {
-      return setErr("The passwords do not match");
+      return showMessage("The passwords do not match");
     }
-    setErr("");
     let res = await RegisterAdmin(details);
-    console.log(res)
+    console.log(res);
     if (res.status && (res.status == 200 || res.status == 201))
-      router.push("/auth/login");
-    else setErr((res.response && res.response.data.error) || res.message);
+      showMessage(
+        "Account created. Now, verify your email and head to login.",
+        themes.light,
+        types.info
+      );
+    else showMessage((res.response && res.response.data.error) || res.message);
   };
 
   return (
@@ -40,6 +66,7 @@ export default function Register() {
         <title>Register</title>
       </Head>
       <div className="login">
+        <ErrorHandler show={show} {...messageProps} />
         <section className="login_section register_section">
           <h1>Register</h1>
           <h6>Ragam-Companion</h6>
@@ -56,7 +83,6 @@ export default function Register() {
               placeholder="Enter your password again"
               ref={password1Ref}
             />
-            <div className={`error ${err ? "message" : ""}`}>{err}</div>
           </div>
           <button className="login_btn" onClick={handleRegister}>
             Register

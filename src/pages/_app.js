@@ -1,9 +1,5 @@
-// import '@/styles/globals.css'
-
-// export default function App({ Component, pageProps }) {
-//   return <Component {...pageProps} />
-// }
 import "@/styles/globals.css";
+import "@/components/ErrorHandler/ErrorHandler.css";
 import TokenCheck from "@/helper/TokenCheck";
 import { useRouter } from "next/router";
 

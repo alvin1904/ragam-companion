@@ -5,7 +5,7 @@ export const createAlbum = async (formdata) => {
   try {
     const response = await createAlbumApi(formdata);
     const res = await getAlbums();
-    return response.data;
+    return response;
   } catch (error) {
     return error;
   }
@@ -18,7 +18,7 @@ export const getAlbums = async () => {
   try {
     const response = await getAlbumsApi();
     addAlbumsToLS(response.data);
-    return response.data;
+    return response;
   } catch (error) {
     return error;
   }

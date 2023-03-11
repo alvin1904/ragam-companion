@@ -30,7 +30,6 @@ body {
   margin: 0;
   padding: 0;
   font: inherit;
-  color: white;
   /* transition: all ease-in-out 250ms; */
 }
 
@@ -161,6 +160,14 @@ body {
 }
 .register_section {
   height: 77%;
+}
+@media(max-width: 480px){
+  .login_section{
+    height: 110vh;
+    width: 100vw;
+    text-align: center;
+    justify-content: center;
+  }
 }
 .login_section input,
 .login_btn {

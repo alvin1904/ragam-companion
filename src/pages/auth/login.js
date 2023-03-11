@@ -3,11 +3,27 @@ import { useRouter } from "next/router";
 import { getDetails, setHead } from "../api";
 import { LoginAdmin } from "../api/auth";
 import Head from "next/head";
+import ErrorHandler from "@/components/ErrorHandler/ErrorHandler";
+import { themes, types } from "@/components/ErrorHandler/config";
 
 export default function Login() {
+  //ERROR HANDLER START
+  const [show, setShow] = useState(false);
+  const [messageProps, setMessageProps] = useState({});
+  const showMessage = (text, theme, type) => {
+    setMessageProps({ message: text, themes: theme, types: type });
+    setShow(true);
+  };
+  useEffect(() => {
+    if (show) {
+      const timeout = setTimeout(() => setShow(false), 3000);
+      return () => clearTimeout(timeout);
+    }
+  }, [show]);
+  //ERROR HANDLER END
+
   const router = useRouter();
   const [forgotP, setForgotP] = useState(false);
-  const [err, setErr] = useState("");
   const emailRef = useRef(null);
   const passwdRef = useRef(null);
 
@@ -21,7 +37,7 @@ export default function Login() {
           if (res.status == 200 && res.data) router.push("/");
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err)
         });
     }
     //CHECKING IF THERE IS A TOKEN IN STORAGE
@@ -33,16 +49,24 @@ export default function Login() {
       password: passwdRef.current.value,
     };
     if (details.email == 0 || details.password == "")
-      setErr("Enter credentials and try again");
+      showMessage(
+        "Enter credentials and try again",
+        themes.light,
+        types.warning
+      );
     else if (details.password.length < 6)
-      setErr("Enter a valid password and try again");
+      showMessage(
+        "Enter a valid password and try again",
+        themes.light,
+        types.warning
+      );
     else {
-      setErr("");
       let res = await LoginAdmin(details);
-      console.log(res)
+      console.log(res);
       if (res.status && (res.status == 200 || res.status == 201))
         router.push("/");
-      else setErr((res.response && res.response.data.error) || res.message);
+      else
+        showMessage((res.response && res.response.data.error) || res.message);
     }
   };
   return (
@@ -51,6 +75,7 @@ export default function Login() {
         <title>Login</title>
       </Head>
       <div className="login">
+        <ErrorHandler show={show} {...messageProps} />
         <section className="login_section">
           {!forgotP && (
             <>
@@ -77,7 +102,6 @@ export default function Login() {
                   Forgot password?
                 </p>
               </div>
-              <div className={`error ${err ? "message" : ""}`}>{err}</div>
               <button className="login_btn" onClick={handleLogin}>
                 Login
               </button>
