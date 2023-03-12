@@ -1,11 +1,12 @@
+import { getFromLocalStorage } from "@/helper/LocalStorage";
 import {
   getDetails,
   loginAdminApi,
   logoutAdminApi,
   registerAdminApi,
   setHead,
+  updateUserName,
 } from ".";
-
 
 export const LoginAdmin = async (data) => {
   console.log(data);
@@ -55,6 +56,17 @@ export const handleLogOut = async () => {
     }
   } catch (err) {
     console.log(err);
+    return err;
+  }
+};
+
+export const handleUpdateArtist = async (data) => {
+  try {
+    let response = await updateUserName(data);
+    const token = JSON.parse(getFromLocalStorage("details")).token;
+    await addtoLocalStorage(token);
+    return response;
+  } catch (err) {
     return err;
   }
 };

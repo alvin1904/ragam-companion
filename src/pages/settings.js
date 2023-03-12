@@ -1,5 +1,6 @@
+import SettingsTop from "@/components/Settings/Settings_Top";
+import SettingsBottom from "@/components/Settings/Settings_Bottom";
 import Head from "next/head";
-import React from "react";
 
 export default function Settings() {
   return (
@@ -7,7 +8,8 @@ export default function Settings() {
       <Head>
         <title>Settings</title>
       </Head>
-      <div>settings</div>
+      <SettingsTop />
+      <SettingsBottom />
     </>
   );
 }

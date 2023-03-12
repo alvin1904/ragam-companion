@@ -6,7 +6,6 @@ import AddSong from "@/components/AddSong/AddSong";
 export default function Add() {
   const [albums, setAlbums] = useState(null);
 
-
   useEffect(() => {
     let temp = getFromLocalStorage("albums");
     let arrays = [];

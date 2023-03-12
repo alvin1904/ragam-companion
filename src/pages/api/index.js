@@ -27,7 +27,7 @@ export const registerAdminApi = (data) =>
   api.post("/artist/auth/register", data);
 export const logoutAdminApi = () => api.get("/artist/auth/logout");
 export const getDetails = () => api.get("/artist");
-export const updateUserName = (data) => api.patch("/artist/auth/edit", data);
+export const updateUserName = (data) => api2.patch("/artist/auth/edit", data);
 export const updatePassword = (data) =>
   api.patch("/artist/auth/edit/password", data);
 
