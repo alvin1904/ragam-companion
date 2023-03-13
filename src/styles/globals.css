@@ -294,6 +294,26 @@ body {
   font-weight: 300;
   margin-top: -20px;
 }
+.Album_delete{
+  height: 50px;
+  width: auto;
+  position: absolute;
+  top: 5%;
+  right: 0%;
+  display: grid;
+  align-items: center;
+  justify-content: end;
+  padding: 0px 20px;
+  z-index: 100;
+}
+.Album_delete svg{
+  fill: white;
+  transition: 250ms all ease-in-out;
+}
+.Album_delete svg:hover{
+  fill: red;
+  scale: 1.1;
+}
 
 @media (max-width: 480px) {
   .Albums {

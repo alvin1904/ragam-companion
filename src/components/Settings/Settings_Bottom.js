@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const SettingsBottom = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-}
+  return <div className="settings_down"></div>;
+};
 
 export default SettingsBottom;

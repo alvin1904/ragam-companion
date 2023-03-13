@@ -8,8 +8,10 @@ export default function Settings() {
       <Head>
         <title>Settings</title>
       </Head>
+      <div className="settings_page">
       <SettingsTop />
       <SettingsBottom />
+      </div>
     </>
   );
 }

@@ -28,7 +28,8 @@ const Username = ({ userNameRef, name, changed }) => {
       {editUserName ? (
         <div>
           <FaRegSave size={20} onClick={saveU} />
-          <FaRegTrashAlt size={20} onClick={closeU} />
+          <FaRegTrashAlt size={20} onClick={closeU} /> 
+          {/* fetch from ls and then */}
         </div>
       ) : (
         <FaPencilAlt size={18} onClick={openU} />

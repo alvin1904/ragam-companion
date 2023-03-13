@@ -34,6 +34,7 @@ export const updatePassword = (data) =>
 export const createAlbumApi = (formdata) => api2.post("/albums", formdata);
 export const getAlbumApi = () => api.get("/album");
 export const getAlbumsApi = () => api.get("/albums");
+export const deleteAlbumsApi = (albumId) => api.delete(`/albums/${albumId}`);
 
 export const uploadSongDetails = (formdata) => api2.post("/songs", formdata);
 export const uploadSongImage = (formdata, songId) =>

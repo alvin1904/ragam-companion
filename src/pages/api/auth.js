@@ -63,7 +63,7 @@ export const handleLogOut = async () => {
 export const handleUpdateArtist = async (data) => {
   try {
     let response = await updateUserName(data);
-    const token = JSON.parse(getFromLocalStorage("details")).token;
+    const token = getFromLocalStorage("details").token;
     await addtoLocalStorage(token);
     return response;
   } catch (err) {

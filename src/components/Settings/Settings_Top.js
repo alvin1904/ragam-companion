@@ -9,6 +9,7 @@ import { FaCamera } from "react-icons/fa";
 import { handleUpdateArtist } from "@/pages/api/auth";
 import ErrorHandler from "../ErrorHandler/ErrorHandler";
 import { themes, types } from "../ErrorHandler/config";
+import { useRouter } from "next/router";
 
 const SettingsTop = () => {
   //ERROR HANDLER START
@@ -26,6 +27,7 @@ const SettingsTop = () => {
   }, [show]);
   //ERROR HANDLER END
 
+  const router = useRouter();
   const [details, setDetails] = useState(getFromLocalStorage("details") || {});
   const [changed, setChanged] = useState(false);
   const userNameRef = useRef(null);
@@ -33,6 +35,10 @@ const SettingsTop = () => {
   const imageRef = useRef(null);
   const [imgOld, setImgOld] = useState(details.profilePic || defImage);
   const [img, setImg] = useState(imgOld);
+
+  useEffect(() => {
+    setDetails(getFromLocalStorage("details") || {});
+  }, [changed]);
 
   const handleApply = async () => {
     if (
@@ -53,11 +59,10 @@ const SettingsTop = () => {
       temp.description = description.trim();
 
     let formData = new FormData();
-    console.log(temp);
     formData.append("data", JSON.stringify(temp));
 
     let file = imageRef.current?.files[0];
-    file && formData.append("profileImage", file);
+    file && formData.append("profilePic", file);
 
     let res = await handleUpdateArtist(formData);
     console.log(res);
@@ -73,12 +78,6 @@ const SettingsTop = () => {
       showMessage((res.response && res.response.data.error) || res.message);
     }
   };
-  const handleCancel = () => {
-    userNameRef.current.value = details.name;
-    DescriptionRef.current.value = details.description || "";
-    setImg(imgOld);
-    setChanged(true);
-  };
   const handleChange = (event) => {
     const file = event.target.files[0];
     const url = file ? URL.createObjectURL(file) : defImage;
@@ -87,50 +86,47 @@ const SettingsTop = () => {
   const handleGo = () => imageRef.current.click();
 
   return (
-    <div className="settings_page">
+    <div className="settings_top">
       <ErrorHandler show={show} {...messageProps} />
-      <div className="settings_top">
-        <div className="settings_profile_pic">
-          <Image src={img} width={200} height={200} alt="profile photo"></Image>
-          <div className="settings_profile_change" onClick={handleGo}>
-            <input
-              type="file"
-              accept=".jpg, .jpeg, .png"
-              ref={imageRef}
-              onChange={handleChange}
-              hidden
-            ></input>
-            <FaCamera />
+      <div className="settings_profile_pic">
+        <Image src={img} width={200} height={200} alt="profile photo"></Image>
+        <div className="settings_profile_change" onClick={handleGo}>
+          <input
+            type="file"
+            accept=".jpg, .jpeg, .png"
+            ref={imageRef}
+            onChange={handleChange}
+            hidden
+          ></input>
+          <FaCamera />
+        </div>
+      </div>
+      {details && (
+        <div className="settings_profile_details">
+          <div className="settings_rows">
+            <Username
+              userNameRef={userNameRef}
+              name={details.name}
+              changed={changed}
+            />
+          </div>
+          <div className="settings_rows">
+            <Desciption
+              DescriptionRef={DescriptionRef}
+              description={details.description}
+              changed={changed}
+            />
+          </div>
+          <div>
+            <button className="settings_btn" onClick={handleApply}>
+              Apply
+            </button>
+            <button className="settings_btn" onClick={() => router.push("/")}>
+              Go Back
+            </button>
           </div>
         </div>
-        {details && (
-          <div className="settings_profile_details">
-            <div className="settings_rows">
-              <Username
-                userNameRef={userNameRef}
-                name={details.name}
-                changed={changed}
-              />
-            </div>
-            <div className="settings_rows">
-              <Desciption
-                DescriptionRef={DescriptionRef}
-                description={details.description}
-                changed={changed}
-              />
-            </div>
-            <div>
-              <button className="settings_btn" onClick={handleApply}>
-                Apply
-              </button>
-              <button className="settings_btn" onClick={handleCancel}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-      <div className="settings_down"></div>
+      )}
     </div>
   );
 };
