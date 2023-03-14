@@ -1,4 +1,4 @@
-import { createAlbumApi, deleteAlbumsApi, getAlbumsApi } from ".";
+import { createAlbumApi, deleteAlbumsApi, getAlbumApi, getAlbumsApi } from ".";
 
 export const createAlbum = async (formdata) => {
   console.log("Request data: ", formdata);
@@ -18,6 +18,15 @@ export const getAlbums = async () => {
   try {
     const response = await getAlbumsApi();
     addAlbumsToLS(response.data);
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getAlbum = async (id) => {
+  try {
+    const response = await getAlbumApi(id);
     return response;
   } catch (error) {
     return error;

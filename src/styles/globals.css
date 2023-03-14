@@ -91,7 +91,21 @@ textarea {
 :where([hidden]) {
   display: none;
 }
-
+*::-webkit-scrollbar {
+  width: 5px;
+  background-color: var(--color-ui-shade);
+  overflow: hidden;
+}
+*::-webkit-scrollbar-thumb {
+  width: 5px;
+  background-color: white;
+  border-radius: 2px;
+}
+*::-webkit-scrollbar-track {
+  width: 5px;
+  background-color: var(--color-ui-shade);
+  overflow: hidden;
+}
 :root {
   --color-primary-400: #6570ff;
   --color-ui-400: #262e47;
@@ -119,7 +133,13 @@ body {
   background-image: url("/bg.svg");
   background-size: cover;
 }
-
+.center{
+  display: grid;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  justify-content: center;
+}
 .hover_effect_1,
 .audio_btn {
   color: #bfbfbf;
@@ -294,7 +314,7 @@ body {
   font-weight: 300;
   margin-top: -20px;
 }
-.Album_delete{
+.Album_delete {
   height: 50px;
   width: auto;
   position: absolute;
@@ -306,11 +326,11 @@ body {
   padding: 0px 20px;
   z-index: 100;
 }
-.Album_delete svg{
+.Album_delete svg {
   fill: white;
   transition: 250ms all ease-in-out;
 }
-.Album_delete svg:hover{
+.Album_delete svg:hover {
   fill: red;
   scale: 1.1;
 }
@@ -442,6 +462,7 @@ body {
   background-color: var(--color-ui-800);
   border-radius: 10px;
   padding: 2rem;
+  color: white;
 }
 .album_headline {
   all: unset;
@@ -623,11 +644,12 @@ body {
   overflow: hidden;
   user-select: none;
 }
-.settings_profile_pic img, .settings_profile_pic div {
+.settings_profile_pic img,
+.settings_profile_pic div {
   position: absolute;
   object-fit: cover;
 }
-.settings_profile_change{
+.settings_profile_change {
   bottom: 0%;
   height: 40px;
   width: 100%;
@@ -639,7 +661,7 @@ body {
   transition: 250ms all ease-in-out;
   opacity: 0.5;
 }
-.settings_profile_change:hover{
+.settings_profile_change:hover {
   opacity: 1;
 }
 .settings_profile_details textarea,
@@ -699,4 +721,50 @@ body {
 }
 .settings_btn:hover {
   background-color: var(--color-ui-shade);
+}
+
+/* ALBUM VIEW */
+.album_view {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.songs_list_container{
+  display: grid;
+  grid-auto-flow: row;
+  gap: 1rem;
+}
+.song_item_container, .song_item_likes{
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+.song_item_container{
+  grid-template-columns: auto 1fr auto auto;
+  background-color: var(--color-ui-500);
+  height: 70px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: 250ms all ease-in-out;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center
+}
+.song_item_container:hover, .song_item_playing{
+  background-color: var(--color-ui-shade);
+  scale: 1.005;
+  cursor: pointer;
+}
+.song_item_image img{
+  object-fit: cover;
+}
+.song_item_title, .song_item_likes{
+  font-size: 1.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.song_item_button, .song_item_likes{
+  padding-right: 1rem;
 }

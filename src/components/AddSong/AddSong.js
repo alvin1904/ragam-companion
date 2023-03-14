@@ -38,7 +38,7 @@ export default function AddSong({ albums }) {
         showMessage("Enter name of the song", themes.light, types.warning);
       else if (!ulAlbumRef.current.id)
         showMessage("Select album name", themes.light, types.warning);
-      else if (ulLangRef.current.innerText == "EnglishHindiRussianTamil")
+      else if (ulLangRef.current.innerText == "EnglishHindiMalayalamTamil")
         showMessage("Select language of the song", themes.light, types.warning);
       else if (genreSelected.length == 0)
         showMessage("Select genre of the song", themes.light, types.warning);

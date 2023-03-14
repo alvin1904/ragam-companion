@@ -1,6 +1,7 @@
 /* CUSTOM ERROR HANDLER - Alvin Varghese */
 /* https://github.com/alvin1904 */
 
+import { useState } from "react";
 import {
   MdAssignmentTurnedIn,
   MdError,
@@ -15,6 +16,7 @@ export default function ErrorHandler({
   types = defaultSettings.types,
   message = defaultSettings.message,
 }) {
+  const [messageState, setMessageState] = useState(message);
   const icons = {
     error: MdError,
     success: MdAssignmentTurnedIn,
@@ -23,6 +25,13 @@ export default function ErrorHandler({
   };
   const Icon = icons[types];
   const display = <Icon size={25} className={`${types}1904`} />;
+
+  const errorMiddleware = () => {
+    if (message === "jwt expired") setMessageState("Please login again!");
+  };
+
+  errorMiddleware();
+  
   return (
     <div
       className={`error_handler_1904 ${show && "show1904"} ${
