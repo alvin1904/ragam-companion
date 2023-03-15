@@ -19,16 +19,16 @@ export default function AlbumDropDown({ array, defaultText, ulRef }) {
       </div>
       <ul className={`menu ${selected ? "menu-open" : ""}`} ref={ulRef}>
         {array &&
-          array.map(({album, albumId}) => {
+          array.map(({albumName, _id}) => {
             return (
               <li
-                key={albumId}
-                id={albumId}
-                onClick={() => handleOptionSelect(album)}
-                className={album == optionSelected ? "active" : ""}
-                ref={album == optionSelected ? ulRef : null}
+                key={_id}
+                id={_id}
+                onClick={() => handleOptionSelect(albumName)}
+                className={albumName == optionSelected ? "active" : ""}
+                ref={albumName == optionSelected ? ulRef : null}
               >
-                {album}
+                {albumName}
               </li>
             );
           })}

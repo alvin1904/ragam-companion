@@ -50,7 +50,6 @@ export const handleLogOut = async () => {
     const res = await logoutAdminApi();
     setHead("");
     if (res.status == 200) {
-      localStorage.removeItem("details");
       localStorage.clear();
       return res;
     }

@@ -41,7 +41,7 @@ export default function Albums() {
   }, [deleted]);
 
   const handleDelete = async (id) => {
-    let res = await deleteAlbum(id);
+    const res = await deleteAlbum(id);
     if (res.status == 200) {
       showMessage("Album deleted successfully", themes.light, types.info);
     } else {

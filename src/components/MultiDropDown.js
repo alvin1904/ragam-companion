@@ -13,7 +13,6 @@ export default function MultiDropDown({
     if (temp.includes(op)) temp.splice(temp.indexOf(op), 1);
     else temp.push(op);
     setGenreSelected(temp);
-    console.log(temp);
     setSelected(false);
   };
   return (

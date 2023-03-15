@@ -27,7 +27,8 @@ export default function Register() {
   const passwordRef = useRef(null);
   const password1Ref = useRef(null);
 
-  const handleRegister = async () => {
+  const handleRegister = async (e) => {
+    e.preventDefault();
     const details = {
       name: nameRef.current.value,
       email: emailRef.current.value,
@@ -70,7 +71,7 @@ export default function Register() {
         <section className="login_section register_section">
           <h1>Register</h1>
           <h6>Ragam-Companion</h6>
-          <div className="login_form transition_1">
+          <form className="login_form transition_1" onSubmit={handleRegister}>
             <input type="text" placeholder="Enter your name" ref={nameRef} />
             <input type="text" placeholder="Enter your email" ref={emailRef} />
             <input
@@ -83,10 +84,10 @@ export default function Register() {
               placeholder="Enter your password again"
               ref={password1Ref}
             />
-          </div>
-          <button className="login_btn" onClick={handleRegister}>
-            Register
-          </button>
+            <button className="login_btn" type="submit">
+              Register
+            </button>
+          </form>
           <div className="alternative_signup">
             <p>
               Already a member?{` `}

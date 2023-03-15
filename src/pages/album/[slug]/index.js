@@ -1,11 +1,27 @@
 import GoBack from "@/components/AddSong/GoBack";
 import AlbumItem from "@/components/Dashboard/AlbumItem";
+import ErrorHandler from "@/components/ErrorHandler/ErrorHandler";
 import SongItem from "@/components/ViewAlbum/SongItem";
-import { getAlbum } from "@/pages/api/album";
+import { deleteAlbum, getAlbum } from "@/pages/api/album";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export default function AlbumPage() {
+  //ERROR HANDLER START
+  const [show, setShow] = useState(false);
+  const [messageProps, setMessageProps] = useState({});
+  const showMessage = (text, theme, type) => {
+    setMessageProps({ message: text, themes: theme, types: type });
+    setShow(true);
+  };
+  useEffect(() => {
+    if (show) {
+      const timeout = setTimeout(() => setShow(false), 3000);
+      return () => clearTimeout(timeout);
+    }
+  }, [show]);
+  //ERROR HANDLER END
+
   const router = useRouter();
   const [id, setId] = useState(router.query.slug);
   const [data, setData] = useState();
@@ -16,8 +32,10 @@ export default function AlbumPage() {
         let res = await getAlbum(id);
         res.data && setData(res.data);
         console.log(res);
-      } catch (err) {
+      } catch (res) {
         console.log("error handle");
+        setData({ error: res });
+        showMessage("Please try logging in again");
       }
     };
 
@@ -25,11 +43,24 @@ export default function AlbumPage() {
     else router.push("/");
   }, [id]);
 
-  const handleDelete = () => {
-    alert("poda patti");
+  const handleDelete = async () => {
+    const res = await deleteAlbum(id);
+    if (res.status == 200) router.push("/");
+    else
+      showMessage(
+        (res.response && res.response.data.error) || res.message,
+        themes.light,
+        types.error
+      );
   };
-
-  if (data) {
+  if (!data || data.error) {
+    return (
+      <div className="album_section album_view">
+        Loading...
+        <ErrorHandler show={show} {...messageProps} />
+      </div>
+    );
+  } else if (data) {
     return (
       <div className="album_section album_view">
         <AlbumItem
@@ -42,18 +73,17 @@ export default function AlbumPage() {
         />
         <br></br>
         <div className="songs_list_container ">
-          {data.songsId.map(
-            ({ songName, songImage, songFile, totalLikes, language }) => {
-              return (
-                <SongItem
-                  songName={songName}
-                  songImage={songImage}
-                  songFile={songFile}
-                  totalLikes={totalLikes}
-                />
-              );
-            }
-          )}
+          {data.songsId.map(({ songName, songImage, songFile, totalLikes }) => {
+            return (
+              <SongItem
+                key={songName}
+                songName={songName}
+                songImage={songImage}
+                songFile={songFile}
+                totalLikes={totalLikes}
+              />
+            );
+          })}
         </div>
         <br></br>
         <div className="center">
@@ -61,7 +91,5 @@ export default function AlbumPage() {
         </div>
       </div>
     );
-  } else {
-    return <div className="album_section album_view"> Loading...</div>;
   }
 }

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const baseurl = "http://localhost:5000/api/v1";
+export const baseurl2 = "http://192.168.0.123:5000/api/v1";
 
 const api = axios.create({
   baseURL: baseurl,
@@ -39,3 +40,6 @@ export const deleteAlbumsApi = (albumId) => api.delete(`/albums/${albumId}`);
 export const uploadSongDetails = (formdata) => api2.post("/songs", formdata);
 export const uploadSongImage = (formdata, songId) =>
   api2.patch(`/songs/${songId}`, formdata);
+
+
+export const fetchAlbumDetailsApi = ()=>api.get("/artist-services/album-info")  

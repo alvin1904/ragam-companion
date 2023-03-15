@@ -2,6 +2,7 @@ import { createAlbum } from "@/pages/api/album";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
+import GoBack from "../AddSong/GoBack";
 import { themes, types } from "../ErrorHandler/config";
 import ErrorHandler from "../ErrorHandler/ErrorHandler";
 
@@ -38,6 +39,7 @@ export default function CreateAlbum() {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     if (nameRef.current.value == "")
       showMessage("Name field is empty", themes.light, types.warning);
     else if (imageRef.current.files.length != 1)
@@ -66,28 +68,27 @@ export default function CreateAlbum() {
   return (
     <div className="album_section">
       <ErrorHandler show={show} {...messageProps} />
-      <input
-        className="album_headline"
-        placeholder="Enter the title of album"
-        ref={nameRef}
-      ></input>
-      <br></br>
+      <form onSubmit={handleSubmit}>
+        <input
+          className="album_headline"
+          placeholder="Enter the title of album"
+          ref={nameRef}
+        ></input>
+        <br></br>
 
-      <input
-        name="album_upload"
-        className="album_upload"
-        type="file"
-        accept=".jpg, .jpeg, .png"
-        ref={imageRef}
-        onChange={handleChange}
-      ></input>
-      <button className="album_submit" onClick={handleSubmit}>
-        SUBMIT
-      </button>
-
-      <button className="album_submit" onClick={() => router.push("/")}>
-        Go Back
-      </button>
+        <input
+          name="album_upload"
+          className="album_upload"
+          type="file"
+          accept=".jpg, .jpeg, .png"
+          ref={imageRef}
+          onChange={handleChange}
+        ></input>
+        <button className="album_submit" type="submit">
+          SUBMIT
+        </button>
+        <GoBack />
+      </form>
       {img && (
         <div className="album_dp_display">
           <Image src={img} height={100} width={300} alt="Image Upload"></Image>

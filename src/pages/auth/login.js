@@ -37,13 +37,14 @@ export default function Login() {
           if (res.status == 200 && res.data) router.push("/");
         })
         .catch((err) => {
-          console.log(err)
+          console.log(err);
         });
     }
     //CHECKING IF THERE IS A TOKEN IN STORAGE
   }, []);
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     const details = {
       email: emailRef.current.value,
       password: passwdRef.current.value,
@@ -81,7 +82,7 @@ export default function Login() {
             <>
               <h1>Login</h1>
               <h6>Ragam-Companion</h6>
-              <div className="login_form">
+              <form className="login_form" onSubmit={handleLogin}>
                 <input
                   type="text"
                   ref={emailRef}
@@ -101,10 +102,10 @@ export default function Login() {
                 >
                   Forgot password?
                 </p>
-              </div>
-              <button className="login_btn" onClick={handleLogin}>
+              <button className="login_btn" type="submit">
                 Login
               </button>
+              </form>
               <div className="alternative_signup">
                 <p>
                   Not a member?{` `}
