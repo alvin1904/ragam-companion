@@ -61,7 +61,6 @@ export default function AddSong({ data }) {
         };
         const formdata = new FormData();
         formdata.append("data", JSON.stringify(temp));
-        console.log(temp);
         formdata.append("songFile", audioRef.current.files[0]);
         let res = await uploadSongDetailsApi(formdata);
         if (res._id) setSongId(res._id);

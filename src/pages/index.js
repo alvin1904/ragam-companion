@@ -1,7 +1,6 @@
 import Dashboard from "@/components/Dashboard/Dashboard";
 import Head from "next/head";
 
-
 export default function Home() {
   return (
     <>

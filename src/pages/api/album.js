@@ -1,7 +1,6 @@
 import { createAlbumApi, deleteAlbumsApi, getAlbumApi, getAlbumsApi, fetchAlbumDetailsApi } from ".";
 
 export const createAlbum = async (formdata) => {
-  console.log("Request data: ", formdata);
   try {
     const response = await createAlbumApi(formdata);
     const res = await getAlbums();

@@ -9,10 +9,8 @@ import {
 } from ".";
 
 export const LoginAdmin = async (data) => {
-  console.log(data);
   try {
     let response = await loginAdminApi(data);
-    console.log(response);
     if (data && response && response.data && response.data.token)
       await addtoLocalStorage(response.data.token);
     return response;
@@ -30,7 +28,6 @@ const addtoLocalStorage = async (token) => {
     localStorage.setItem("details", JSON.stringify(temp));
   } catch (err) {
     alert("token expire or net down");
-    console.log(err);
   }
 };
 
@@ -54,7 +51,6 @@ export const handleLogOut = async () => {
       return res;
     }
   } catch (err) {
-    console.log(err);
     return err;
   }
 };

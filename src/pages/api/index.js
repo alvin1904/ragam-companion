@@ -10,7 +10,7 @@ const api = axios.create({
 });
 
 const api2 = axios.create({
-  baseURL: baseurl,
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   headers: {
     "Content-Type": "multipart/form-data",
   },

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { setHead } from "@/pages/api";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
@@ -19,7 +20,6 @@ const TokenCheck = (props) => {
         }
         setAuthenticated(true);
       } catch (err) {
-        console.log(err);
         setAuthenticated(false);
       }
     };

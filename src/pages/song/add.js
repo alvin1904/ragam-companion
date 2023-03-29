@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import AddSong from "@/components/AddSong/AddSong";
 import { getAlbumDetails } from "../api/album";
@@ -36,7 +36,6 @@ export default function Add() {
         const res = await getAlbumDetails();
         if (res.status == 200) {
           const albumDetails = getNamesByKey(res.data);
-          console.log(albumDetails)
           setData(albumDetails);
         } else {
           setData({});

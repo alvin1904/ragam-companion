@@ -65,7 +65,6 @@ const SettingsTop = () => {
     file && formData.append("profilePic", file);
 
     let res = await handleUpdateArtist(formData);
-    console.log(res);
     if (res.status == 200) {
       setChanged(true);
       setImgOld(img);

@@ -51,7 +51,6 @@ export default function Register() {
       return showMessage("The passwords do not match");
     }
     let res = await RegisterAdmin(details);
-    console.log(res);
     if (res.status && (res.status == 200 || res.status == 201))
       showMessage(
         "Account created. Now, verify your email and head to login.",

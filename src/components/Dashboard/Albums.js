@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { getFromLocalStorage } from "@/helper/LocalStorage";
 import { deleteAlbum, getAlbums } from "@/pages/api/album";
 import { useEffect, useState } from "react";
@@ -27,7 +28,6 @@ export default function Albums() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getAlbums();
-      console.log(res);
       if (res.status == 200) setList(res.data);
       else if (res.data.length == 0)
         showMessage("No albums to display!", themes.light, types.info);
@@ -38,6 +38,7 @@ export default function Albums() {
     if (albumList === list && list.length > 0) console.log(list);
     else if (albumList && albumList.length >= 0) setList(albumList);
     else if (list.length == 0) fetchData();
+    
   }, [deleted]);
 
   const handleDelete = async (id) => {

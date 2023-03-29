@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import GoBack from "@/components/AddSong/GoBack";
 import AlbumItem from "@/components/Dashboard/AlbumItem";
 import ErrorHandler from "@/components/ErrorHandler/ErrorHandler";
@@ -31,9 +32,7 @@ export default function AlbumPage() {
       try {
         let res = await getAlbum(id);
         res.data && setData(res.data);
-        console.log(res);
       } catch (res) {
-        console.log("error handle");
         setData({ error: res });
         showMessage("Please try logging in again");
       }

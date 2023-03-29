@@ -1,5 +1,4 @@
 import SettingsTop from "@/components/Settings/Settings_Top";
-import SettingsBottom from "@/components/Settings/Settings_Bottom";
 import Head from "next/head";
 
 export default function Settings() {
@@ -10,7 +9,6 @@ export default function Settings() {
       </Head>
       <div className="settings_page">
       <SettingsTop />
-      <SettingsBottom />
       </div>
     </>
   );

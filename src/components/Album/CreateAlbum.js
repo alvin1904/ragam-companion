@@ -22,7 +22,6 @@ export default function CreateAlbum() {
   }, [show]);
   //ERROR HANDLER END
 
-  const router = useRouter();
   const imageRef = useRef(null);
   const nameRef = useRef(null);
   const [img, setImg] = useState(null);
@@ -53,7 +52,6 @@ export default function CreateAlbum() {
       // which is a File object that contains the binary data of the image.
       formdata.append("albumImage", imageRef.current.files[0]);
       let res = await createAlbum(formdata);
-      console.log(res);
       if (res.status == 201)
         showMessage(
           "The album was created successfully!",

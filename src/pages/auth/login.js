@@ -5,6 +5,7 @@ import { LoginAdmin } from "../api/auth";
 import Head from "next/head";
 import ErrorHandler from "@/components/ErrorHandler/ErrorHandler";
 import { themes, types } from "@/components/ErrorHandler/config";
+/* eslint-disable react-hooks/exhaustive-deps */
 
 export default function Login() {
   //ERROR HANDLER START
@@ -63,7 +64,6 @@ export default function Login() {
       );
     else {
       let res = await LoginAdmin(details);
-      console.log(res);
       if (res.status && (res.status == 200 || res.status == 201))
         router.push("/");
       else

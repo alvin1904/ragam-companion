@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { handleLogOut } from "@/pages/api/auth";
 import img from "@/../public/photos/defaultPic.png";
-import { themes, types } from "../ErrorHandler/config";
 import ErrorHandler from "../ErrorHandler/ErrorHandler";
 
 export default function Sidebar() {
