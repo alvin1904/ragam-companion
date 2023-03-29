@@ -10,6 +10,7 @@ import {
 
 export const LoginAdmin = async (data) => {
   try {
+    console.log(process.env.NEXT_PUBLIC_BASE_URL)
     let response = await loginAdminApi(data);
     if (data && response && response.data && response.data.token)
       await addtoLocalStorage(response.data.token);
