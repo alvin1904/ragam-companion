@@ -1,10 +1,8 @@
 import axios from "axios";
 
-export const baseurl = "http://localhost:5000/api/v1";
-export const baseurl2 = "http://192.168.0.123:5000/api/v1";
 
 const api = axios.create({
-  baseURL: baseurl,
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",

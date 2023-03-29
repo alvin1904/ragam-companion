@@ -62,3 +62,5 @@ lib-cov
 
 public/photos/*
 public/photos
+
+.env
