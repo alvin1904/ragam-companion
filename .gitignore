@@ -60,7 +60,5 @@ lib-cov
 .node_repl_history
 .next
 
-public/photos/*
-public/photos
 
 .env
