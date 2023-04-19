@@ -12,7 +12,7 @@ export default function AlbumItem({
 }) {
   const router = useRouter();
   const [id, setId] = useState(albumId);
-
+  console.log(image);
   return (
     <div className="Album_card">
       <div className="Album_delete" onClick={() => handleDelete(id)}>
@@ -20,6 +20,7 @@ export default function AlbumItem({
       </div>
       <Image
         src={image || img}
+        loading="eager"
         className="Album_bg"
         alt="bg"
         width={300}
