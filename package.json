@@ -16,5 +16,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0"
+  },
+  "devDependencies": {
+    "@netlify/ipx": "^1.4.0",
+    "netlify-plugin-ipx": "^0.0.1"
   }
 }
